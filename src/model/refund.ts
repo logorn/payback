@@ -1,5 +1,8 @@
+import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/map';
 
-export class Refund {
+@Injectable()
+export class RefundModel {
 	public expenseDate: string
 	public chackingCopy: string
 
