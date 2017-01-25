@@ -8,8 +8,11 @@ import { HomePage } from '../pages/home/home'
 import { TabsPage } from '../pages/tabs/tabs'
 import { RefundPage } from '../pages/refund/refund'
 import { AdvancePage } from '../pages/advance/advance'
+import { LoginPage } from '../pages/login/login'
 import { Refund } from '../providers/refund'
 import { RefundModel } from '../model/refund'
+import { RecoverPasswordPage } from '../pages/recover-password/recover-password'
+import { SignupPage } from '../pages/signup/signup'
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -25,7 +28,10 @@ const cloudSettings: CloudSettings = {
     HomePage,
     TabsPage,
     RefundPage,
-    AdvancePage
+    AdvancePage,
+    LoginPage,
+    RecoverPasswordPage,
+    SignupPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -39,7 +45,10 @@ const cloudSettings: CloudSettings = {
     HomePage,
     TabsPage,
     RefundPage,
-    AdvancePage
+    AdvancePage,
+    LoginPage,
+    RecoverPasswordPage,
+    SignupPage
   ],
   providers: [
     Refund,

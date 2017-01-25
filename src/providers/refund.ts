@@ -6,15 +6,28 @@ import { RefundModel } from '../model/refund'
 @Injectable()
 export class Refund {
 
-	public refundModel: RefundModel
+	public refunds: Array<RefundModel>
 
 	constructor(public db: Database, @Inject(RefundModel) private refund) {
-		this.refundModel = new RefundModel()
 		this.db.connect()
+		this.db.collection('refunds')
+		.watch()
+		.subscribe(
+			refunds => this.refunds = refunds,
+			error => console.error(error))
 	}
 
 	public create() {
-		this.db.collection('refunds').store(this.refund)
+		return new Promise((resolve, reject) => {
+			this.db.collection('refunds')
+			.store(this.refund)
+			.subscribe(
+				result => {},
+				err => {
+					throw err
+				},
+				() => resolve()
+			)
+		})
 	}
-
 }
