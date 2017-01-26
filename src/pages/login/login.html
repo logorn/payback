@@ -6,16 +6,16 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>Login</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 	<form (ngSubmit)="signin()" #loginFormControl="ngForm">
-		<ion-list>
+		<ion-list no-lines>
 			<ion-item>
 				<ion-label>E-mail</ion-label>
 				<ion-input type="text"></ion-input>
@@ -25,10 +25,19 @@
 				<ion-input type="password"></ion-input>
 			</ion-item>
 			<ion-item>
-				<button ion-button type="submit" block>Enviar</button>
+				<button ion-button type="submit" block large>Enviar</button>
 			</ion-item>
 		</ion-list>
 	</form>
-</ion-content>
 
-<form (ngSubmit)="newRefund()" #refundFormControl="ngForm">
+	<ion-grid>
+		<ion-row>
+			<ion-col width-50>
+				<button ion-button block small clear item-left (click)="goToRecoverPassword()">Recuperar senha</button>
+			</ion-col>
+			<ion-col width-50>
+				<button ion-button block small clear item-right (click)="goToSignUp()">Cadastre-se</button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

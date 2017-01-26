@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Auth, User, UserDetails, IDetailedError } from '@ionic/cloud-angular';
+import { RecoverPasswordPage } from '../recover-password/recover-password'
+import { SignupPage } from '../signup/signup'
 
 @Component({
 	selector: 'page-login',
@@ -9,26 +10,23 @@ import { Auth, User, UserDetails, IDetailedError } from '@ionic/cloud-angular';
 
 export class LoginPage {
 
-	constructor(public navCtrl: NavController, 
-		public navParams: NavParams,
-		public auth: Auth,
-		public user: User
-		) {}
+	constructor(
+		public navCtrl: NavController, 
+		public navParams: NavParams
+		) {
 
+	}
 
-	public signup() {
-		let details: UserDetails = {'email': 'hi@ionic.io', 'password': 'puppies123'};
+	goToSignUp () {
+		this.navCtrl.push(SignupPage)
+	}
 
-		this.auth.signup(details)
-		.then(() => {
-			console.log('The user is now registered')
-		}, (err: IDetailedError<string[]>) => {
-			for (let e of err.details) {
-				if (e === 'conflict_email') {
-					console.error('Email already exists.')
-				}
-			}
-		})
+	goToRecoverPassword () {
+		this.navCtrl.push(RecoverPasswordPage)
+	}
+
+	signin () {
+		debugger
 	}
 
 }

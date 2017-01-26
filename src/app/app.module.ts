@@ -13,6 +13,7 @@ import { Refund } from '../providers/refund'
 import { RefundModel } from '../model/refund'
 import { RecoverPasswordPage } from '../pages/recover-password/recover-password'
 import { SignupPage } from '../pages/signup/signup'
+import { UserModel } from '../model/user'
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -53,6 +54,7 @@ const cloudSettings: CloudSettings = {
   providers: [
     Refund,
     RefundModel,
+    UserModel,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
