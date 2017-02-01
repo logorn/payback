@@ -14,3 +14,26 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.button-inner {
+	ion-spinner {
+		position: relative;
+		display: inline-block;
+		width: 15px;
+		height: 15px;
+		left: 5px;
+
+		.spinner svg {
+			width: 15px;
+			height: 15px;
+			stroke: #ffffff;
+			fill: #ffffff;
+
+		}
+
+		line {
+			stroke: #ffffff !important;
+		}
+	}
+}
+

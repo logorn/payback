@@ -14,6 +14,11 @@ import { RefundModel } from '../model/refund'
 import { RecoverPasswordPage } from '../pages/recover-password/recover-password'
 import { SignupPage } from '../pages/signup/signup'
 import { UserModel } from '../model/user'
+import { CostCenterModel } from '../model/cost-center'
+import { CompanyModel } from '../model/company'
+import { CountryModel } from '../model/country'
+import { RegionModel } from '../model/region'
+
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -55,6 +60,10 @@ const cloudSettings: CloudSettings = {
     Refund,
     RefundModel,
     UserModel,
+    CompanyModel,
+    CostCenterModel,
+    CountryModel,
+    RegionModel,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
