@@ -8,7 +8,10 @@ import { Refund } from '../../providers/refund'
 	selector: 'page-refund',
 	templateUrl: 'refund.html'
 })
+
 export class RefundPage {
+
+	public statusMessage: string
 
 	constructor(
 		public navCtrl: NavController, 
@@ -16,19 +19,23 @@ export class RefundPage {
 		@Inject(Refund) private refundService,
 		@Inject(RefundModel) public refund) { }
 
-	uploadCheckingCopy = () => {
+	uploadCheckingCopy() {
 		Camera.getPicture({
 			destinationType: Camera.DestinationType.DATA_URL,
 			targetHeight: 1000,
 			targetWidth: 1000
-		}).then(imageData => {
-			this.refund.chackingCopy = "data:image/jpeg;base64," + imageData
-		}).catch(error => {
-			console.log(error)
 		})
+		.then(imageData => 
+			this.refund.chackingCopy = "data:image/jpeg;base64," + imageData)
+		.catch(error => 
+			console.log(error))
 	}
 
-	newRefund = () => {
-		this.refundService.create(this.refund)
+	newRefund() {
+		this.refundService.create()
+		.then(() => 
+			this.statusMessage = "Reembolso solicitado!")
+		.catch(() => 
+			this.statusMessage = "Houve algum erro ao solicitar o reembolso.")
 	}
 }

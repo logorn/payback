@@ -8,8 +8,17 @@ import { HomePage } from '../pages/home/home'
 import { TabsPage } from '../pages/tabs/tabs'
 import { RefundPage } from '../pages/refund/refund'
 import { AdvancePage } from '../pages/advance/advance'
+import { LoginPage } from '../pages/login/login'
 import { Refund } from '../providers/refund'
 import { RefundModel } from '../model/refund'
+import { RecoverPasswordPage } from '../pages/recover-password/recover-password'
+import { SignupPage } from '../pages/signup/signup'
+import { UserModel } from '../model/user'
+import { CostCenterModel } from '../model/cost-center'
+import { CompanyModel } from '../model/company'
+import { CountryModel } from '../model/country'
+import { RegionModel } from '../model/region'
+
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -25,7 +34,10 @@ const cloudSettings: CloudSettings = {
     HomePage,
     TabsPage,
     RefundPage,
-    AdvancePage
+    AdvancePage,
+    LoginPage,
+    RecoverPasswordPage,
+    SignupPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -39,11 +51,19 @@ const cloudSettings: CloudSettings = {
     HomePage,
     TabsPage,
     RefundPage,
-    AdvancePage
+    AdvancePage,
+    LoginPage,
+    RecoverPasswordPage,
+    SignupPage
   ],
   providers: [
     Refund,
     RefundModel,
+    UserModel,
+    CompanyModel,
+    CostCenterModel,
+    CountryModel,
+    RegionModel,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

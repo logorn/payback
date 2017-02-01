@@ -13,13 +13,16 @@
 		<ion-list no-lines>
 			<ion-item>
 				<ion-label stacked>Data da despesa</ion-label>
-				<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="refund.expenseDate" name="expenseDate">Data</ion-datetime>
+				<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="refund.expenseDate" name="expenseDate">Data</ion-datetime>
 			</ion-item>
 			<ion-item>
 				<button ion-button (click)="uploadCheckingCopy()" block>Comprovante/Recibo</button>
 			</ion-item>
 			<ion-item>
 				<button ion-button type="submit" block>Enviar</button>
+			</ion-item>
+			<ion-item>
+				<p>{{statusMessage}}</p>
 			</ion-item>
 		</ion-list>
 	</form>

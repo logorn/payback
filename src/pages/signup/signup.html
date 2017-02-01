@@ -1,0 +1,44 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Cadastro</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<form (ngSubmit)="newUser()" #loginFormControl="ngForm" novalidate>
+		<ion-list no-lines>
+			<ion-item>
+				<ion-label for="name" stacked>Nome</ion-label>
+				<ion-input type="text" name="name" [(ngModel)]="user.name" id="name" maxlength="40"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label for="email" stacked>E-mail</ion-label>
+				<ion-input type="email" name="email" [(ngModel)]="user.email" id="email" maxlength="40"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label for="phone" stacked>Telefone</ion-label>
+				<ion-input type="number" name="phone" [(ngModel)]="user.phone" id="phone" maxlength="40"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label for="password" stacked>Senha</ion-label>
+				<ion-input type="password" name="password" [(ngModel)]="user.password" id="password" maxlength="16"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label for="confirm-password" stacked>Confirmação de senha</ion-label>
+				<ion-input type="password" name="confirm-password" [(ngModel)]="user.confirmPassword" id="confirm-password" maxlength="16"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label for="company" stacked>Empresa</ion-label>
+				<ion-select [(ngModel)]="user.company" name="company" id="company">
+					<ion-option *ngFor="let company of companies" [value]="company.id">{{company.name}}</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<button ion-button type="submit" block>
+					<span>Cadastrar</span>
+					<ion-spinner [hidden]="!isFetching" class="btn-spinner"></ion-spinner>
+				</button>
+			</ion-item>
+		</ion-list>
+	</form>
+</ion-content>

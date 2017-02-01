@@ -1,0 +1,46 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>Login</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<form (ngSubmit)="signin()" #loginFormControl="ngForm" name="loginForm">
+		<ion-list no-lines>
+			<ion-item>
+				<ion-label for="email">E-mail</ion-label>
+				<ion-input type="email" name="email" [(ngModel)]="user.email" id="email" #email="ngModel" required></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Senha</ion-label>
+				<ion-input type="password" name="password" [(ngModel)]="user.password" id="password" #password="ngModel" required></ion-input>
+			</ion-item>
+			<ion-item>
+				<button ion-button type="submit" block large>
+					<span>Entrar</span>
+					<ion-spinner [hidden]="!isFetching" class="btn-spinner"></ion-spinner>
+				</button>
+			</ion-item>
+		</ion-list>
+	</form>
+
+	<ion-grid>
+		<ion-row>
+			<ion-col width-50>
+				<button ion-button block small clear item-left (click)="goToRecoverPassword()">Recuperar senha</button>
+			</ion-col>
+			<ion-col width-50>
+				<button ion-button block small clear item-right (click)="goToSignUp()">Cadastre-se</button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

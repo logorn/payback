@@ -5,8 +5,9 @@ import 'rxjs/add/operator/map';
 export class RefundModel {
 	public expenseDate: string
 	public chackingCopy: string
+	public isApproved: boolean
 
 	constructor(){
-
+		this.isApproved = false
 	}
 }
