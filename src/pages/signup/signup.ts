@@ -53,7 +53,7 @@ export class SignupPage {
 			this.showFormAlertMessage('Preencha o telefone com o código de área')
 			return false
 		} else if(!this.user.isValidPassword()) {
-			this.showFormAlertMessage('A senha deve confirmada e conter:<br>Um número<br>Uma letra<br>Um caractere especial')
+			this.showFormAlertMessage('A senha deve confirmada e conter:<br>Um número<br>Uma letra<br>Um caractere especial<br>Mínimo de 6 dígitos')
 			return false
 		} else if (!this.user.isValidCompany()) {
 			this.showFormAlertMessage('Informe qual empresa você trabalha')
@@ -72,7 +72,7 @@ export class SignupPage {
 			} else if (e === 'required_email') {
 				message = 'Preencha o seu e-mail'
 			} else if (e === 'required_password') {
-				message = 'A senha deve confirmada e conter:<br>Um número<br>Uma letra<br>Um caractere especial'
+				message = 'A senha deve confirmada e conter:<br>Um número<br>Uma letra<br>Um caractere especial<br>Mínimo de 6 dígitos'
 			} else if (e === 'conflict_username') {
 				message = 'Este nome de usuário já está cadastrado'
 			} else if (e === 'invalid_email') {
