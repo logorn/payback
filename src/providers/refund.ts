@@ -18,15 +18,14 @@ export class Refund {
 	}
 
 	public create() {
+		debugger
 		return new Promise((resolve, reject) => {
 			this.db.collection('refunds')
 			.store(this.refund)
 			.subscribe(
-				result => {},
-				err => {
-					throw err
-				},
-				() => resolve()
+				result => console.log('Result:', result),
+				err => reject("Erro ao enviar reembolso, tente novamente."),
+				() => resolve("Reembolso solicitado com sucesso. Aguarde aprovação.")
 			)
 		})
 	}

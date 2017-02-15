@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
-
-import {AdvancePage} from '../advance/advance'
-import {RefundPage} from '../refund/refund'
+import { RefundPage } from '../refund/refund'
 
 @Component({
 	selector: 'page-home',
@@ -17,7 +14,8 @@ export class HomePage {
 		this.navController = navController
 	}
 
-	goToAdvance = () => this.navController.push(AdvancePage)
-	goToRefund = () => this.navController.push(RefundPage)
+	goToRefund () {
+		this.navController.push(RefundPage)
+	}
 
 }

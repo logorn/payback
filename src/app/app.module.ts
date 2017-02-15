@@ -18,7 +18,9 @@ import { CostCenterModel } from '../model/cost-center'
 import { CompanyModel } from '../model/company'
 import { CountryModel } from '../model/country'
 import { RegionModel } from '../model/region'
-
+import { AlertHelper } from '../helpers/alert'
+import { FormHelper } from '../helpers/form'
+import { NewPasswordPage } from '../pages/new-password/new-password'
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -37,7 +39,8 @@ const cloudSettings: CloudSettings = {
     AdvancePage,
     LoginPage,
     RecoverPasswordPage,
-    SignupPage
+    SignupPage,
+    NewPasswordPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -54,7 +57,8 @@ const cloudSettings: CloudSettings = {
     AdvancePage,
     LoginPage,
     RecoverPasswordPage,
-    SignupPage
+    SignupPage,
+    NewPasswordPage
   ],
   providers: [
     Refund,
@@ -64,8 +68,10 @@ const cloudSettings: CloudSettings = {
     CostCenterModel,
     CountryModel,
     RegionModel,
+    FormHelper,
+    AlertHelper,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
 
+export class AppModule {}
