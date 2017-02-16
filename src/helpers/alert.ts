@@ -3,16 +3,27 @@ import { AlertController } from 'ionic-angular'
 
 export class AlertHelper {
 
-  constructor(@Inject(AlertController) private alertCtrl){}
+	constructor(@Inject(AlertController) private alertCtrl){}
 
-  public alertSuccess(title: string, message: string, buttons: Array<Object>) {
+	public alertSuccess(title: string, message: string, buttons: Array<Object>) {
 
-    let alert = this.alertCtrl.create({
-      title: title,
-      subTitle: message,
-      buttons: buttons
-    })
+		let alert = this.alertCtrl.create({
+			title: title,
+			subTitle: message,
+			buttons: buttons
+		})
 
-    alert.present()
-  }
+		alert.present()
+	}
+
+	public alertError(title: string, message: string, buttons: Array<Object>) {
+
+		let alert = this.alertCtrl.create({
+			title: title,
+			subTitle: message,
+			buttons: buttons
+		})
+
+		alert.present()
+	}
 }

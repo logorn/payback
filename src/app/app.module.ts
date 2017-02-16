@@ -24,7 +24,7 @@ import { NewPasswordPage } from '../pages/new-password/new-password'
 
 const cloudSettings: CloudSettings = {
   'core': {
-    'app_id': '0cedb6bf'
+    'app_id': '9c8d38ab'
   }
 }
 

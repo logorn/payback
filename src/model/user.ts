@@ -41,7 +41,6 @@ export class UserModel  {
 		&& this.phone.match(/\d/g) !== null 
 		&& this.phone.match(/\d/g).length >= 10
 		&& this.phone.match(/\s{2,}/g) === null
-		&& this.phone.match(/\d/g) === null
 		&& this.phone.match(/^\s/g) === null
 		&& this.phone.match(/[^A-Za-z0-9\s]/g) === null
 	}

@@ -5,7 +5,7 @@ import { SignupPage } from '../signup/signup'
 import { Auth } from '@ionic/cloud-angular'
 import { UserModel } from '../../model/user'
 import { TabsPage } from '../tabs/tabs'
-import { AlertController } from 'ionic-angular'
+import { AlertHelper } from '../../helpers/alert'
 
 @Component({
 	selector: 'page-login',
@@ -23,7 +23,7 @@ export class LoginPage {
 		public navParams: NavParams,
 		@Inject(Auth) private auth,
 		@Inject(UserModel) public user,
-		public alertCtrl: AlertController) {
+		private alertHelper: AlertHelper) {
 
 		this.isFetching = false
 	}
@@ -38,16 +38,16 @@ export class LoginPage {
 	}
 
 	signin () {
-		this.errorMessages = new Array<string>()
+
 		this.isFetching = true
 		this.auth.login('basic', this.user)
 		.then(() => {
 			this.isFetching = false
 			this.navCtrl.push(TabsPage)
-		})
-		.catch(err => {
+		},
+		() => {
 			this.isFetching = false
-			this.errorMessages.push("E-mail ou senha inválidos")
+			this.alertHelper.alertError("Erro", "Verifique os dados e a sua conexão.", ["OK"])
 		})
 	}
 }
