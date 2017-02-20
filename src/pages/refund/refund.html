@@ -1,12 +1,16 @@
 <ion-header>
 	<ion-navbar>
 		<ion-title>Reembolso</ion-title>
+		<ion-spinner [hidden]="!isFetching" class="nav-spinner"></ion-spinner>
 	</ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-
+	<button ion-button small block (click)="uploadCheckingCopy()">Comprovante/Recibo</button>
+	<div>
+		<img [src]="domSanitizer.bypassSecurityTrustUrl(refund.checkingCopy)" *ngIf="refund.checkingCopy" />
+	</div>
 	<form (ngSubmit)="newRefund()" #refundFormControl="ngForm" novalidate>
 		<ion-list no-lines>
 			<ion-item>
@@ -20,10 +24,7 @@
 				<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="refund.expenseDate" name="expenseDate">Data</ion-datetime>
 			</ion-item>
 			<ion-item>
-				<button ion-button (click)="uploadCheckingCopy()" block>Comprovante/Recibo</button>
-			</ion-item>
-			<ion-item>
-				<button ion-button type="submit" block>
+				<button ion-button block large type="submit">
 					<span>Enviar</span>
 					<ion-spinner [hidden]="!isFetching" class="btn-spinner"></ion-spinner>
 				</button>

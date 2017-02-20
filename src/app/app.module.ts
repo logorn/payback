@@ -21,6 +21,7 @@ import { RegionModel } from '../model/region'
 import { AlertHelper } from '../helpers/alert'
 import { FormHelper } from '../helpers/form'
 import { NewPasswordPage } from '../pages/new-password/new-password'
+import { RefundHistoryPage } from '../pages/refund-history/refund-history'
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -40,7 +41,8 @@ const cloudSettings: CloudSettings = {
     LoginPage,
     RecoverPasswordPage,
     SignupPage,
-    NewPasswordPage
+    NewPasswordPage,
+    RefundHistoryPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -58,7 +60,8 @@ const cloudSettings: CloudSettings = {
     LoginPage,
     RecoverPasswordPage,
     SignupPage,
-    NewPasswordPage
+    NewPasswordPage,
+    RefundHistoryPage
   ],
   providers: [
     Refund,

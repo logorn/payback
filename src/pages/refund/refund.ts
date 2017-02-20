@@ -5,6 +5,8 @@ import { RefundModel } from '../../model/refund'
 import { Refund } from '../../providers/refund'
 import { CostCenterModel } from '../../model/cost-center'
 import { AlertHelper } from '../../helpers/alert'
+import { RefundHistoryPage } from '../refund-history/refund-history'
+import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
 	selector: 'page-refund',
@@ -13,8 +15,7 @@ import { AlertHelper } from '../../helpers/alert'
 
 export class RefundPage {
 
-	public statusMessage: string
-	public costCenter: CostCenterModel
+	public isFetching: boolean
 	public costCenters: Array<CostCenterModel>
 
 	constructor(
@@ -22,9 +23,10 @@ export class RefundPage {
 		public navParams: NavParams,
 		@Inject(Refund) private refundService,
 		@Inject(RefundModel) public refund,
-		private alertHelper: AlertHelper) {
+		@Inject(CostCenterModel) public costCenter,
+		private alertHelper: AlertHelper,
+		private domSanitizer: DomSanitizer) {
 
-			this.costCenter = new CostCenterModel(0, "", "")
 			this.costCenters = CostCenterModel.mock()
 	}
 
@@ -34,25 +36,45 @@ export class RefundPage {
 			targetHeight: 1000,
 			targetWidth: 1000
 		})
-		.then(imageData =>
-			this.refund.chackingCopy = "data:image/jpeg;base64," + imageData)
-		.catch(error =>
-			console.log(error))
+		.then(
+			imageData => this.refund.checkingCopy = "data:application/octet-stream;base64," + imageData,
+			error => console.log(error)
+		)
 	}
 
 	newRefund() {
+
 		this.refund.costCenter = this.costCenters.find(element => {
-			if(this.costCenter.id === element.id) {
+			if (this.costCenter.id === element.id) {
 				return true
 			}
 			return false
 		})
-		
-		this.refundService.create()
-		.then(
-			result => this.alertHelper.alertSuccess("Enviado", result, ["OK"]),
-			error => this.alertHelper.alertSuccess("Erro", error, ["OK"])
-		)
-			
+
+		if (this.validateRefundFormBeforeSend()) {
+
+			this.isFetching = true
+			this.refundService.create()
+			.then(
+				result => {
+					this.isFetching = false
+					this.alertHelper.alertSuccess("Enviado", result, ["OK"])
+					this.navCtrl.push(RefundHistoryPage)
+				},
+				error => {
+					this.isFetching = false
+					this.alertHelper.alertError("Erro", error, ["OK"])
+				}
+			)																																																																																																																																																																																															
+		}
+	}
+
+	private validateRefundFormBeforeSend() {
+		if (!this.refund.isValidCostCenter()) {
+			this.alertHelper.alertSuccess("Erro", "Informe o centro de custo", ["OK"])
+			return false
+		} else {
+			return true
+		}
 	}
 }

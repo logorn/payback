@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { RefundPage } from '../refund/refund'
+import { RefundHistoryPage } from '../refund-history/refund-history'
 
 @Component({
 	selector: 'page-home',
@@ -16,6 +17,10 @@ export class HomePage {
 
 	goToRefund () {
 		this.navController.push(RefundPage)
+	}
+
+	goToRefundHistory () {
+		this.navController.push(RefundHistoryPage)
 	}
 
 }

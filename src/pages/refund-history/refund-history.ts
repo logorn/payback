@@ -1,22 +1,39 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Refund } from '../../providers/refund'
+import { AlertHelper } from '../../helpers/alert'
+import { DomSanitizer } from '@angular/platform-browser'
 
-/*
-  Generated class for the RefundHistory page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
-  selector: 'page-refund-history',
-  templateUrl: 'refund-history.html'
+	selector: 'page-refund-history',
+	templateUrl: 'refund-history.html'
 })
 export class RefundHistoryPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+	public isFetching: boolean
+	public refunds: Object
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RefundHistoryPage');
-  }
+	constructor(
+		public navCtrl: NavController, 
+		public navParams: NavParams,
+		private refundService: Refund,
+		private alertHelper: AlertHelper,
+		private domSanitizer: DomSanitizer) {
 
+	}
+
+	ngOnInit() {
+		this.isFetching = true
+        this.refundService.allRefunds()
+		.then(
+			result => {
+				this.isFetching = false
+				this.refunds = result
+			},
+			error => {
+				this.isFetching = false
+				this.alertHelper.alertError("Erro", error, ["OK"])
+			}
+		)
+    }
 }

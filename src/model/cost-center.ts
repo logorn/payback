@@ -6,19 +6,28 @@ export class CostCenterModel{
 	public name: string
 	public code: string
 
-	constructor(id: number, name: string, code: string){
-		this.id = id
-		this.name = name
-		this.code = code
-	}
+	constructor(){}
 
 	public static mock() {
 		var costCenters = new Array<CostCenterModel>()
+		var costCenter1 = new CostCenterModel()
+		costCenter1.id = 0
+		costCenter1.name = "RH"
+		costCenter1.code = "002.300-2"
 
-		costCenters.push(new CostCenterModel(1, "RH",  "001.100-1"))
-		costCenters.push(new CostCenterModel(2, "Financeiro",  "001.200-1"))
-		costCenters.push(new CostCenterModel(3, "Diretoria",  "001.300-2"))
-		costCenters.push(new CostCenterModel(4, "Geral", "001.001-1"))
+		var costCenter2 = new CostCenterModel()
+		costCenter2.id = 3
+		costCenter2.name = "Diretoria"
+		costCenter2.code = "002.300-2"
+
+		var costCenter3 = new CostCenterModel()
+		costCenter3.id = 2
+		costCenter3.name = "Financeiro"
+		costCenter3.code = "002.300-2"
+
+		costCenters.push(costCenter1)
+		costCenters.push(costCenter2)
+		costCenters.push(costCenter3)
 
 		return costCenters
 	}
