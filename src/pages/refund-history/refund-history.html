@@ -7,7 +7,7 @@
 
 
 <ion-content padding>
-	<ion-list>
+	<ion-list no-lines>
 		<ion-item *ngFor="let refund of refunds">
 			<ion-card>
 				<img *ngIf="refund.checkingCopy" [src]="domSanitizer.bypassSecurityTrustUrl(refund.checkingCopy)"/>
@@ -17,7 +17,7 @@
 					</ion-card-title>
 					<p>
 						Data da despesa: {{refund.expenseDate}}<br>
-						Status: {{refund.isApproved}}<br>
+						Status: {{refund.status}}<br>
 					</p>
 				</ion-card-content>
 			</ion-card>

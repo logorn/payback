@@ -7,7 +7,11 @@ export class RegionModel {
 	public name: string
 	public country: CountryModel
 
-	constructor(id: number, name: string, country: CountryModel) {
+	constructor(
+		id: number, 
+		name: string, 
+		country: CountryModel) {
+		
 		this.id = id
 		this.name = name
 		this.country = country

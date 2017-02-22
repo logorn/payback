@@ -1,6 +1,6 @@
-import 'rxjs/add/operator/map';
+ import 'rxjs/add/operator/map';
 import { Injectable, Inject } from '@angular/core';
-import { Database } from '@ionic/cloud-angular';
+import { Database, User } from '@ionic/cloud-angular';
 import { RefundModel } from '../model/refund'
 
 @Injectable()
@@ -8,16 +8,25 @@ export class Refund {
 
 	public refunds: Array<RefundModel>
 
-	constructor(public db: Database, @Inject(RefundModel) private refund) {
+	constructor(
+		public db: Database, 
+		@Inject(RefundModel) private refund,
+		@Inject(User) private user) {
+
 		this.db.connect()
 		this.db.collection('refunds')
 		.watch()
 		.subscribe(
 			refunds => this.refunds = refunds,
-			error => console.error(error))
+			error => console.error(error)
+		)
 	}
 
 	public create() {
+		this.user
+		debugger
+		this.refund.user.id = this.user.id
+
 		return new Promise((resolve, reject) => {
 			this.db.collection('refunds')
 			.store(this.refund)
@@ -36,7 +45,8 @@ export class Refund {
 			.subscribe(
 				result => resolve(result),
 				err => reject("Erro ao obter seu histórico de reembolso."),
-				() => console.log("Lista de reembolso terminou de carregar."))
+				() => console.log("Lista de reembolso terminou de carregar.")
+			)
 		})
 	}
 }

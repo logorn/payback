@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserModel  {
+	public id: string
 	public email: string
 	public name: string
 	public password: string

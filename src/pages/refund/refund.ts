@@ -7,6 +7,7 @@ import { CostCenterModel } from '../../model/cost-center'
 import { AlertHelper } from '../../helpers/alert'
 import { RefundHistoryPage } from '../refund-history/refund-history'
 import { DomSanitizer } from '@angular/platform-browser'
+import { Auth, User } from '@ionic/cloud-angular';
 
 @Component({
 	selector: 'page-refund',
@@ -24,6 +25,8 @@ export class RefundPage {
 		@Inject(Refund) private refundService,
 		@Inject(RefundModel) public refund,
 		@Inject(CostCenterModel) public costCenter,
+		@Inject(User) private user,
+		@Inject(Auth) private auth,
 		private alertHelper: AlertHelper,
 		private domSanitizer: DomSanitizer) {
 
@@ -37,7 +40,7 @@ export class RefundPage {
 			targetWidth: 1000
 		})
 		.then(
-			imageData => this.refund.checkingCopy = "data:application/octet-stream;base64," + imageData,
+			imageData => this.refund.checkingCopy = `data:application/octet-stream;base64,${imageData}`,
 			error => console.log(error)
 		)
 	}
@@ -51,7 +54,7 @@ export class RefundPage {
 			return false
 		})
 
-		if (this.validateRefundFormBeforeSend()) {
+		if (this.validateRefundFormBeforeSend() && this.auth.isAuthenticated()) {
 
 			this.isFetching = true
 			this.refundService.create()
@@ -71,7 +74,7 @@ export class RefundPage {
 
 	private validateRefundFormBeforeSend() {
 		if (!this.refund.isValidCostCenter()) {
-			this.alertHelper.alertSuccess("Erro", "Informe o centro de custo", ["OK"])
+			this.alertHelper.alertError("Erro", "Informe o centro de custo", ["OK"])
 			return false
 		} else {
 			return true
