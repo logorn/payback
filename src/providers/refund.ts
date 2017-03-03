@@ -24,7 +24,6 @@ export class Refund {
 
 	public create() {
 		this.user
-		debugger
 		this.refund.user.id = this.user.id
 
 		return new Promise((resolve, reject) => {

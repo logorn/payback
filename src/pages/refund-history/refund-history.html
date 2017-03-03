@@ -16,8 +16,9 @@
 						{{refund.costCenter.name}} - {{refund.costCenter.code}}
 					</ion-card-title>
 					<p>
-						Data da despesa: {{refund.expenseDate}}<br>
+						Data da despesa: {{refund.expenseDate | date}}<br>
 						Status: {{refund.status}}<br>
+						Valor Total: {{refund.totalPrice === '' ? 0 : refund.totalPrice  | currency:'BRL':true:'1.2-2'}}<br>
 					</p>
 				</ion-card-content>
 			</ion-card>

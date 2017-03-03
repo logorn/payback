@@ -1,4 +1,4 @@
-import { Injectable, Inject} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CostCenterModel } from './cost-center'
 import { UserModel } from './user'
 import 'rxjs/add/operator/map';
@@ -11,6 +11,7 @@ export class RefundModel {
 	public status: string
 	public costCenter: CostCenterModel
 	public user: UserModel
+	public totalPrice: number
 
 	constructor(){
 		this.isApproved = undefined
@@ -21,6 +22,10 @@ export class RefundModel {
 
 	isValidCostCenter () {
 		return this.costCenter !== undefined 
-		&& this.costCenter
+	}
+
+	isValidTotalPrice () {
+		return this.totalPrice !== undefined
+		&& this.totalPrice !== 0
 	}
 }

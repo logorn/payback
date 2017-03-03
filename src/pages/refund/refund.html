@@ -24,6 +24,10 @@
 				<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="refund.expenseDate" name="expenseDate">Data</ion-datetime>
 			</ion-item>
 			<ion-item>
+				<ion-label stacked>Valor total da despesa: {{refund.totalPrice === '' ? 0 : refund.totalPrice  | currency:'BRL':true:'1.2-2'}}</ion-label>
+				<ion-input type="number" name="totalPRice" [(ngModel)]="refund.totalPrice" id="totalPrice" lang="nb"></ion-input>				
+			</ion-item>
+			<ion-item>
 				<button ion-button block large type="submit">
 					<span>Enviar</span>
 					<ion-spinner [hidden]="!isFetching" class="btn-spinner"></ion-spinner>
